@@ -1,0 +1,22 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="background-color">
+    <ion-title class="ion-text-center">Choun Nath Dictionary</ion-title>
+  </ion-toolbar>
+
+  <div class="box-search">
+    <ion-item>
+      <ion-icon name="search-outline"></ion-icon>
+      <ion-input class="search" placeholder="Search..." (ionChange)='onChange($event.target.value)'></ion-input>
+    </ion-item>
+  </div>
+
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let data of dataSearchList">
+    <ion-item lines="full" (click)="gotoMeaning(data.id)">
+      <ion-label>{{data.word}}</ion-label>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

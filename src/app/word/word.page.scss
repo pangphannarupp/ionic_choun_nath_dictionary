@@ -1,0 +1,29 @@
+.background-color{
+    --background: #8e714f;
+}
+
+.ion-text-center {
+    color: #fff;
+}
+
+.box-search {
+    padding: 0px 10px 10px 10px;
+    background-color: #8e714f;
+
+    ion-item {
+        border-radius: 5px;
+        
+        .search {
+            margin-left: 10px;
+        }
+    }
+}
+
+ion-item {
+    --highlight-color-focused: none;
+}
+
+.list-md {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}

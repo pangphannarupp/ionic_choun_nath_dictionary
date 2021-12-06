@@ -1,0 +1,31 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Meaning</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="setBookmark(id)">
+        <ion-icon slot="icon-only" *ngIf="enableBookmark==true" name="bookmark"></ion-icon>
+        <ion-icon slot="icon-only" *ngIf="enableBookmark==false" name="bookmark-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="decreaseFontSize()">
+        <ion-icon slot="icon-only" name="remove"></ion-icon>
+      </ion-button>
+      <ion-button (click)="increaseFontSize()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-scroll scrollX="true">
+    <ion-item [ngStyle]="{'font-size': fontSizeWord + 'em', 'font-weight': 'bold'}" lines="none">
+      {{word}}
+    </ion-item>
+    <ion-item [ngStyle]="{'font-size': fontSizeWord + 'em'}" lines="none">
+      {{definition}}
+    </ion-item>
+  </ion-scroll>
+</ion-content>

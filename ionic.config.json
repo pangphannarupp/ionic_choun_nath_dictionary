@@ -1,0 +1,7 @@
+{
+  "name": "choun_nath_dictionary",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
