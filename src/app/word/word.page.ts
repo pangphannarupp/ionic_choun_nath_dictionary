@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { HttpClient } from "@angular/common/http";
+
+
 
 @Component({
   selector: 'app-word',
@@ -18,25 +21,53 @@ export class WordPage implements OnInit {
     word: string,
     definition: string
   }>();
+  offset: number = 0;
+  maxLoad: number = 100;
 
-  constructor(public navCtrl: NavController) { 
+  constructor(public navCtrl: NavController, private httpClient: HttpClient) { 
+    
+    // let url = "https://raw.githubusercontent.com/pangphannarupp/chounnath_dictionary/main/assets/assets/json/db.json";
+
+    // this.http.get(url).subscribe(data => {
+    //   console.log(data);
+    // });
   }
 
   ngOnInit() {
     this.setData();
-    this.setSearchData('');
   }
 
   setData() {
-    for(var i = 0; i < 100; i++) {
-      this.dataList.push(
-        {
-          'id': (i + 1),
-          'word': 'Word' + (i + 1),
-          'definition': 'definition' + (i + 1),
-        }
-      );
-    }
+    // for(var i = 0; i < 100; i++) {
+    //   this.dataList.push(
+    //     {
+    //       'id': (i + 1),
+    //       'word': 'Word' + (i + 1),
+    //       'definition': 'definition' + (i + 1),
+    //     }
+    //   );
+    // }
+
+    this.httpClient.get("assets/db.json").subscribe(data =>{
+      
+      
+      for(var i = this.offset; i < Object.keys(data).length && i < this.maxLoad; i++) {
+        // console.log(data[i]['word']);
+        this.dataList.push(
+          {
+            'id': data[i]['id'],
+            'word': data[i]['word'],
+            'definition': data[i]['definition'],
+          }
+        );
+      }
+
+      // if(i == Object.keys(data).length - 1) {
+        this.setSearchData('');
+        this.offset = this.maxLoad;
+        this.maxLoad = 2*this.maxLoad;
+      // }
+    });
   }
 
   setSearchData(text: string) {
@@ -45,9 +76,9 @@ export class WordPage implements OnInit {
       if(this.dataList[i].word.toLowerCase().indexOf(text.toLowerCase()) != -1) {
         this.dataSearchList.push(
           {
-            'id': (i + 1),
-            'word': 'Word' + (i + 1),
-            'definition': 'definition' + (i + 1),
+            'id': this.dataList[i].id,
+            'word': this.dataList[i].word,
+            'definition': this.dataList[i].definition,
           }
         );
       }

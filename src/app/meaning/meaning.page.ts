@@ -26,7 +26,8 @@ export class MeaningPage implements OnInit {
   setData() {
     this.id = history.state['id'];
     this.word = history.state['word'];
-    this.definition = history.state['definition'];
+    this.definition = history.state['definition']
+                      .replace(/1|2|3|4|5|6|7|8|9|0|<|>|"/g, '');
 
     this.setHistory(this.id);
   }

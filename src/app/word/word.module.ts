@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { WordPageRoutingModule } from './word-routing.module';
 
 import { WordPage } from './word.page';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    WordPageRoutingModule
+    WordPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [WordPage]
 })
